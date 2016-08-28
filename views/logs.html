@@ -1,0 +1,43 @@
+<html>
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+
+</head>
+<body>
+
+	<a class="waves-effect waves-light btn" href="/admin">Home</a>
+	</br>
+
+		<h1><%= number %></h1>
+		
+		Working since = <%= workingSince %>
+    <table>
+       <thead>
+         <tr>
+             <th>Time</th>
+             <th>Status</th>
+             <th>Attempt</th>
+         </tr>
+       </thead>
+
+       <tbody>
+         <% for (var i = 0; i < log.length; i++) { %>
+
+           <tr>
+             <td><%= log[i].time %></td>
+             <td><%= log[i].status %></td>
+             <td><%= log[i].attempt %></td>
+           </tr>
+
+         <% } %>
+
+       </tbody>
+     </table>
+
+</body>
+</html>

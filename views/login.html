@@ -1,0 +1,46 @@
+<html>
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  <script>
+      $(document).ready(function(){
+          var number,password;
+          $("#submit").click(function(){
+              number=$("#number").val();
+              password=$("#password").val();
+              /*
+              * Perform some validation here.
+              */
+              $.post("https://socialcops-assignment.herokuapp.com/logindetails",{number:number,password:password},function(data){
+                  if(data==='done')
+                  {
+                      window.location.href="/admin";
+                  }else{
+											document.getElementById("error").innerHTML = data;
+									}
+              });
+          });
+      });
+  </script>
+</head>
+<body>
+
+		<h4><%= pagetitle %></h4>
+		<h4><%= title %></h4>
+		<p id="error"></p>
+    <div class="input-field col s6">
+        <input type="text" size="40" placeholder="Type your number" id="number" required><br />
+        <input type="password" size="40" placeholder="Type your password" id="password" required><br />
+
+        <input type="button" value="Login" id="submit">
+    </div>
+
+		<p>If you are not registered please go register</p>
+		<a href="/register">register</a>
+
+</body>
+</html>

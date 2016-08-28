@@ -1,0 +1,62 @@
+<html>
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<!-- Compiled and minified CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+	<!-- Compiled and minified JavaScript -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+	<script>
+			$(document).ready(function(){
+
+					$("#startservice").click(function(){
+
+							$.post("https://socialcops-assignment.herokuapp.com/servicestarted",{},function(data){
+									if(data==='done')
+									{
+											document.getElementById("error").innerHTML = "Service Started";
+												// document.getElementById("startservice").disabled = true;
+									}else{
+											document.getElementById("error").innerHTML = data;
+									}
+							});
+					});
+
+					$("#stopservice").click(function(){
+
+							$.post("https://socialcops-assignment.herokuapp.com/servicestopped",{},function(data){
+									if(data==='done')
+									{
+											document.getElementById("error").innerHTML = "Service Stopped";
+
+									}else{
+											document.getElementById("error").innerHTML = data;
+									}
+							});
+					});
+
+			});
+	</script>
+
+</head>
+<body>
+
+		<p id="error"></p>
+		<h1><%= number %></h1>
+		
+		<% if(service==false){ %>
+		<a id="startservice" class="waves-effect waves-light btn">start service</a>
+		<% }else{ %>
+		<a id="stopservice" class="waves-effect waves-light btn">stop service</a>
+		<% } %>
+
+
+			
+			<a href="/logs" class="waves-effect waves-light btn">logs</a>
+			<a href="/resetname" class="waves-effect waves-light btn">Reset name</a>
+			<a href="/editsleeptime" class="waves-effect waves-light btn">Edit Sleep timings</a>
+			<a href="/logout" class="waves-effect waves-light btn">Logout</a>
+
+
+</body>
+</html>

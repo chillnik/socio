@@ -1,0 +1,46 @@
+<html>
+<head>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/css/materialize.min.css">
+
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.7/js/materialize.min.js"></script>
+  <script>
+      $(document).ready(function(){
+          var name;
+          $("#submit").click(function(){
+              name=$("#name").val();
+
+              $.post("https://socialcops-assignment.herokuapp.com/resetname",{name:name},function(data){
+                  if(data==='done')
+                  {
+                      alert("Name has been reset successfully");
+                      window.location.href="/admin";
+                  }else{
+											document.getElementById("error").innerHTML = data;
+									}
+              });
+          });
+      });
+  </script>
+</head>
+<body>
+
+		<!-- <h4><%= pagetitle %></h4>
+		<h4><%= title %></h4> -->
+
+		<a class="waves-effect waves-light btn" href="/admin">Home</a>
+		</br>
+
+		<p id="error"></p>
+    <div class="input-field col s6">
+        <input type="text" size="40" placeholder="Type your name" id="name" required><br />
+        <input type="button" value="reset name" id="submit">
+    </div>
+
+
+
+
+</body>
+</html>
